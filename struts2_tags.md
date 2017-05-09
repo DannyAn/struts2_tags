@@ -1,7 +1,4 @@
-#Struts2标签
-
-@(struts2)[sturts2, 标签]
-
+# Struts2标签
 struts2标签库可分为三类：
 1. 用户界面标签(UI标签)
 2. 非用户界面标签(非UI标签)
@@ -10,8 +7,8 @@ struts2标签库可分为三类：
 ```xml
 <%@taglib prefix="s" uri="/struts-tags"%>
 ```
-##数据标签
-###action标签
+## 数据标签
+### action标签
 ``name为``必填属性，制定了调用的Action
 ``namespace``为可选属性
 ``executeResult``为是否将处理结果包含进来，默认为``false``。
@@ -30,7 +27,7 @@ struts2标签库可分为三类：
   	不将结果包含到本页面中：
   	<s:action name="actionTag" executeResult="false" namespace="/"/>
 ```
-###bean标签
+### bean标签
 ``name``是必填属性，该属性指定要实例化的JavaBean的实例类。
 ``var``:该属性是一个可选属性。如果指定了该属性，则允许直接通过该var属性来访问JavaBean实例。
 ```xml
@@ -48,7 +45,7 @@ struts2标签库可分为三类：
 姓名为：<s:property value="#user.uname"/><br>
 邮箱为：<s:property value="#user.uemail"/><br>
 ```
-###date标签
+### date标签
 ``fomat``是可选属性，如果指定了该属性，将根据该属性指定的格式来格式化日期
 ``name``是必填属性，该属性指定要格式化的日期值
 ``nice``是可选属性，该属性只能为``[true|false]``，指定是否输出指定日期和当前时刻之间的时差，默认false
@@ -76,19 +73,19 @@ struts2标签库可分为三类：
     距今已有:
     <s:date name="#attr.date" nice="true"/>
 ```
-###debug标签
+### debug标签
 用于辅助测试
 ```xml
 <s:debug/>
 ```
-###include标签
+### include标签
 将页面包含到此页面
 ```xml
 <s:include value="include-page.jsp">
 	<s:param name="uname" value="'chenheng'"/>
 </s:include>
 ```
-###param标签
+### param标签
 ```xml
 <s:param name="uname">apple</s:param>
 <!--值为apple对象-->
@@ -96,7 +93,7 @@ struts2标签库可分为三类：
 <!--值为apple字符串-->
 <s:param name="uname" value="'apple'"/>
 ```
-###push标签
+### push标签
 ```xml
 <!-- 使用bean标签创建user对象 -->
 <s:bean name="bean.User" var="user" >
@@ -112,7 +109,7 @@ struts2标签库可分为三类：
   	<s:property value="uemail"/>
 </s:push>
 ```
-###set标签
+### set标签
 ``scope``为可选属性，值可为application、session、request、page、action。默认在Stack Context中
 ``value``为可选属性，指定赋给变量的值，默认为ValueStack栈顶的值赋给变量
 ``var``为可选属性，新生成变量的名字
@@ -146,7 +143,7 @@ struts2标签库可分为三类：
   	取出默认范围（Stack Context）的值：
   	<s:property value="#u5.uname"/><br>
 ```
-###url标签
+### url标签
 用于生成一个URL地址
 ``value``为可选属性，指定生成URL的地址值，如果不指定就用action属性指定的Action作为URL地址
 ``action``为可选属性，指定生成URL的地址为哪个Action，如果不指定就用value作为URL地址值
@@ -155,12 +152,12 @@ struts2标签库可分为三类：
 ```xml
 
 ```
-###property标签
+### property标签
 用于输出value属性指定值，没有指定value属性，则默认输出ValueStack栈顶的值
 
 - - -
-##流程控制标签
-###if/elseif/else标签
+## 流程控制标签
+### if/elseif/else标签
 ```xml
    	<!-- 使用set标签来定义一个变量score，值为95 -->
    	<s:set var="score" value="95"/>
@@ -174,7 +171,7 @@ struts2标签库可分为三类：
    	<s:elseif test="#score >= 60">及格</s:elseif>
    	<s:else>不及格</s:else>
 ```
-###iterator标签
+### iterator标签
 ``value``可选属性，指定被迭代的集合，默认ValueStack栈顶的集合
 ``var``可选属性，临时存储value集合里元素的值
 ``status``可选属性，指定迭代时的IteratorStatus实例，加入``status``的值为``st``，通过#st.count返回迭代数量#st.index返回迭代索引#st.enen当前索引是否为偶数#st.odd当前索引是否为奇数#st.first返回当前索引是否为第一个元素#st.last是否为最后一个元素
@@ -208,7 +205,7 @@ struts2标签库可分为三类：
     	</tr>
     </s:iterator>
 ```
-###append标签
+### append标签
 用于将几个集合对象拼接起来，组成一个新集合，需要指定`var``属性，``param``子标签用于指定拼接的结合
 ```xml
     <!-- 使用append标签将多个集合拼接成一个新集合 -->
@@ -226,7 +223,7 @@ struts2标签库可分为三类：
     'Struts 2框架应用教程':'陈恒'}"/>
     </s:append>
 ```
-###generator标签
+### generator标签
 ``var``可选属性，将子串集合放在PageContext属性中
 ``val``必选属性，指定解析字符串
 ``separator``必选属性，指定分隔符
@@ -255,10 +252,10 @@ generator标签体内迭代子字符串集合：<br><br>
     	<s:property value="book"/><br>
     </s:iterator>
 ```
-###merge标签
+### merge标签
 与append相似，访问顺序是交替访问。
 
-###subset标签
+### subset标签
 用于取得集合的子集
 ``count``可选属性，指定子集元素的个数，默认是全部元素
 ``source``可选属性，指定源集合，默认ValueStack栈顶的集合
@@ -287,7 +284,7 @@ public class MyDecider implements Decider{
     	</s:iterator>
     </s:subset>
 ```
-###sort标签
+### sort标签
 ``comparator``必选属性，指定进行排序的Comparator实例
 ``source``可选属性，指定被排序的集合，默认ValueStack栈顶的集合
 
@@ -317,7 +314,7 @@ public class MyComparator implements Comparator<String>{
 ```
 - - - 
 
-##表单标签
+## 表单标签
 ```java
 
 public class MyUser {
@@ -334,8 +331,8 @@ public class MyUser {
 		return users;
 	}
 }
-```
-###checkboxlist标签 
+``` 
+### checkboxlist标签 
 ```xml
 <s:form>
     	<!-- 使用简单集合生成多个复选框 -->
@@ -355,7 +352,7 @@ public class MyUser {
     	<!-- listKey="uname"是指将集合中实例的 uname作为复选框的Label，即显示在页面上-->
     </s:form>
 ```
-###combobox标签
+### combobox标签
 ```xml
     <s:form>
     	<h3>combobox标签示例</h3>
@@ -364,7 +361,7 @@ public class MyUser {
     	list="{'清华大学','北京大学','南京大学','科技大学'}"/>
     </s:form>
 ```
-###doubleselect标签
+### doubleselect标签
 ```xml
   <s:form theme="simple">
      <table><tr>
@@ -390,7 +387,7 @@ public class MyUser {
 	   </tr></table>
     </s:form>
 ```
-###optiontransferselect标签
+###  optiontransferselect标签
 ``allowToLeftLabel``
 ``allowToRightLabel``
 ``allowAllToLeftLabel``
@@ -427,7 +424,7 @@ public class MyUser {
   		doubleMultiple="true"/>
   	</s:form>
 ```
-###select标签
+### select标签
 ```xml
     <s:form>
     <!-- 使用List生成下拉列表，value属性指定默认选择项-->
@@ -447,7 +444,7 @@ public class MyUser {
     <!-- listKey="uname"是指将集合中实例的 uname作为选项框的Label，即显示在页面上-->
     </s:form>
 ```
-###optgroup标签
+### optgroup标签
 ```xml
     <s:form>
     	<s:select name="course" label="选择您喜欢的技术" multiple="true" 
@@ -461,7 +458,7 @@ public class MyUser {
     	</s:select>
     </s:form>
 ```
-###radio标签
+### radio标签
 ```xml
     <s:form>
     	<!-- 使用简单集合生成多个单选框 -->
@@ -481,11 +478,11 @@ public class MyUser {
     	<!-- listKey="uname"是指将集合中实例的 uname作为单选框的Label，即显示在页面上-->
     </s:form>
 ```
-###file标签
+### file标签
 ```xml
 <s:file name="pictrue"/>
 ```
-##非表单标签标签
+## 非表单标签标签
 ```java
 public String execute(){
 	if(!"chenheng".equals(uname)){
